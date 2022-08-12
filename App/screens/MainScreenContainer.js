@@ -10,8 +10,6 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function MainScreenContainer({ navigation }) {
   const HomeStack = createStackNavigator();
-  const data = useSelector((state) => state);
-  
   return (
     <Tab.Navigator
       shifting={false}

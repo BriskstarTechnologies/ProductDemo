@@ -5,33 +5,33 @@ import {
   Dimensions,
   StatusBar,
   Text,
-  TouchableOpacity,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {useTheme} from '@react-navigation/native';
-//import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-//import LinearGradient from 'react-native-linear-gradient';
 import Loader from '../../App/components/Loader';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import { productListApi } from '../ApiHelper/ApiCall';
 import {color} from '../../App/utils/color';
-
+import {useDispatch} from 'react-redux';
+import { addProductList } from '../redux/actions/action';
 
 const SplashScreen = ({navigation}) => {
   const {colors} = useTheme();
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    getData();
+    loadProductData();
   }, []);
 
-  const getData = async () => {
+  const loadProductData = async () => {
     try {
       setLoading(true);
-      //var userData = await AsyncStorage.getItem('userData');
+      var getApiData = await productListApi();
+      console.log("Splash Data",getApiData)
+      dispatch(addProductList(getApiData));
+
+      navigation.navigate('MainScreenContainer');
       setLoading(false);
-      setTimeout(()=>{
-        navigation.navigate('MainScreenContainer');
-      },1000);
     } catch (error) {
       console.log(error);
       setLoading(false);

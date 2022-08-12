@@ -13,27 +13,27 @@ const Loader = props => {
     } = props;
 
     return (
-        <Modal
-      transparent={true}
-      animationType={'none'}
-      visible={loading}
-      onRequestClose={() => { console.log('close modal') }}>
-      <View style={styles.modalBackground}>
-        <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator
-            style={{ height: 100, width: 100 }}
-            color={color.backgroundCol}
-            animating={loading} />
-        </View>
-      </View>
-    </Modal>
-        //    loading && <View style={styles.modalBackground}>
-        //         <View style={styles.activityIndicatorWrapper}>
-        //             <ActivityIndicator
-        //                 size='large'
-        //                 animating={loading} />
-        //         </View>
-        //     </View>
+    //     <Modal
+    //   transparent={true}
+    //   animationType={'none'}
+    //   visible={loading}
+    //   onRequestClose={() => { console.log('close modal') }}>
+    //   <View style={styles.modalBackground}>
+    //     <View style={styles.activityIndicatorWrapper}>
+    //       <ActivityIndicator
+    //         style={{ height: 100, width: 100 }}
+    //         color={color.backgroundCol}
+    //         animating={loading} />
+    //     </View>
+    //   </View>
+    // </Modal>
+           loading && <View style={styles.modalBackground}>
+                <View style={styles.activityIndicatorWrapper}>
+                    <ActivityIndicator
+                        size='large'
+                        animating={loading} />
+                </View>
+            </View>
     );
 
 }

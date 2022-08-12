@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import {
   Text,
@@ -12,12 +12,16 @@ import {
 
 import { productListApi } from '../ApiHelper/ApiCall';
 import { useFocusEffect } from '@react-navigation/native';
-import {Image, Header } from 'react-native-elements';
+import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
+import { useSelector } from 'react-redux';
+import Loader from '../components/Loader';
 
 const HomeScreen = props => {
   const [result, setResult] = useState([]);
-  
+  const [loading, setLoading] = useState(false);
+  const data = useSelector((state) => state);
+
   useFocusEffect(
     React.useCallback(() => {
       BackHandler.addEventListener('hardwareBackPress', backAction);
@@ -26,9 +30,10 @@ const HomeScreen = props => {
     }, []),
   );
 
-  useEffect(()=>{
-    fetchData();
-  },[]);
+  useEffect(() => {
+    setResult(data.productData.productList)
+    //setLoading(false);
+  }, []);
 
   const backAction = () => {
     Alert.alert('Alert!', 'Are you sure you want to go exit?', [
@@ -42,23 +47,14 @@ const HomeScreen = props => {
     return true;
   };
 
-  const fetchData = async () => {
-    try {
-      var getApiData = await productListApi();
-      
-      setResult(getApiData);
-    
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const onClickAddToCart = (index, item) => {
     Alert.alert("Note", "Item is added in your cart")
   };
 
   return (
+    
     <View style={styles.container}>
+       <Loader loading={loading} />
       <Header
         centerComponent={{
           text: 'Products',
@@ -66,6 +62,7 @@ const HomeScreen = props => {
         }}
         backgroundColor="white"
       />
+     
 
       <FlatList
         style={{ flex: 1 }}
@@ -89,7 +86,7 @@ const HomeScreen = props => {
                 />
 
                 <TouchableOpacity
-                  style={{ marginStart: 'auto',backgroundColor:'orange',borderRadius:20,padding:6 }}
+                  style={{ marginStart: 'auto', backgroundColor: 'orange', borderRadius: 20, padding: 6 }}
                   onPress={() => onClickAddToCart(index, item)}>
                   <Image
                     source={require('../assets/ic_cart.png')}
