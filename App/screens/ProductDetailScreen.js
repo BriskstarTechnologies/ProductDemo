@@ -13,11 +13,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import Slideshow from 'react-native-image-slider-show';
 import ViewMoreText from 'react-native-view-more-text';
 
+//Note : In this screen display Product description with rating and more.
 const ProductDetailScreen = ({ route }) => {
   const { data } = route.params;
-  console.log("Data--->", data)
-
-  //const productImages = [data.image, data.image, data.image];
+  
   const productImages = [
     "https://source.unsplash.com/1024x768/?nature",
     "https://source.unsplash.com/1024x768/?water",

@@ -10,16 +10,18 @@ import {
   BackHandler,
 } from 'react-native';
 
-import { productListApi } from '../ApiHelper/ApiCall';
 import { useFocusEffect } from '@react-navigation/native';
 import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
+//Note : In this screen display Product list with price and short description.
 const HomeScreen = props => {
   const [result, setResult] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  //Note :This method are used to get product data from redux.
   const data = useSelector((state) => state);
 
   useFocusEffect(
@@ -32,14 +34,14 @@ const HomeScreen = props => {
 
   useEffect(() => {
     setResult(data.productData.productList)
-    //setLoading(false);
-  }, []);
+    setLoading(false)
+   }, []);
 
+  //Note : This Function is used in hardware back click. 
   const backAction = () => {
     Alert.alert('Alert!', 'Are you sure you want to go exit?', [
       {
         text: 'Cancel',
-        //onPress: () => null,
         style: 'cancel',
       },
       { text: 'YES', onPress: () => BackHandler.exitApp() },
@@ -47,12 +49,12 @@ const HomeScreen = props => {
     return true;
   };
 
+  //Note : Add to cart click
   const onClickAddToCart = (index, item) => {
     Alert.alert("Note", "Item is added in your cart")
   };
 
   return (
-    
     <View style={styles.container}>
        <Loader loading={loading} />
       <Header
@@ -62,8 +64,6 @@ const HomeScreen = props => {
         }}
         backgroundColor="white"
       />
-     
-
       <FlatList
         style={{ flex: 1 }}
         data={result}

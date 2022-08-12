@@ -10,13 +10,20 @@ import {
     BackHandler,
 } from 'react-native';
 
-import { productListApi } from '../ApiHelper/ApiCall';
 import { useFocusEffect } from '@react-navigation/native';
 import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
+import { useSelector } from 'react-redux';
+import Loader from '../components/Loader';
 
+//Note : In this screen display Product list with price and short description.
 const MyListScreen = props => {
     const [result, setResult] = useState([]);
+    const [loading, setLoading] = useState(true);
+    
+    //Note :This method are used to get product data from redux.
+    const data = useSelector((state) => state);
+
     useFocusEffect(
         React.useCallback(() => {
 
@@ -27,9 +34,10 @@ const MyListScreen = props => {
     );
 
     useEffect(() => {
-        fetchData();
-    }, []);
-
+        setResult(data.productData.productList)
+        setLoading(false)
+       }, []);
+    
     const backAction = () => {
         Alert.alert('Alert!', 'Are you sure you want to go exit?', [
             {
@@ -42,18 +50,9 @@ const MyListScreen = props => {
         return true;
     };
 
-    const fetchData = async () => {
-        try {
-            var getApiData = await productListApi();
-
-            setResult(getApiData);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     return (
         <View style={styles.container}>
+             <Loader loading={loading} />
             <Header
                 centerComponent={{
                     text: 'My List',

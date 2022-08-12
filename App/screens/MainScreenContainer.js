@@ -1,15 +1,13 @@
 import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import { useSelector } from "react-redux";
 import HomeScreen from './HomeScreen';
-import { createStackNavigator } from '@react-navigation/stack';
 import { Image, Platform } from 'react-native';
 import MyListScreen from './MyListScreen';
 import { color } from '../utils/color';
 const Tab = createMaterialBottomTabNavigator();
 
+//Note : In this screen we declared Tab Navigation View(Bottom Tab).
 export default function MainScreenContainer({ navigation }) {
-  const HomeStack = createStackNavigator();
   return (
     <Tab.Navigator
       shifting={false}
