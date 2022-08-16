@@ -29,6 +29,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.4",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-paper": "^4.9.2",
+    "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.5.0",
     "react-native-toast-notification": "^1.1.2",

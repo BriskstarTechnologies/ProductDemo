@@ -6,7 +6,7 @@ import MyListScreen from './MyListScreen';
 import { color } from '../utils/color';
 const Tab = createMaterialBottomTabNavigator();
 
-//Note : In this screen we declared Tab Navigation View(Bottom Tab).
+//Note : In this screen we declared Tab Navigation View(Bottom Tab) for the redirection screen.
 export default function MainScreenContainer({ navigation }) {
   return (
     <Tab.Navigator

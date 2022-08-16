@@ -8,6 +8,7 @@ import {
   FlatList,
   Alert,
   BackHandler,
+  ActivityIndicator,
 } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -82,6 +83,7 @@ const HomeScreen = props => {
                 <Image
                   source={{ uri: item.image }}
                   style={styles.listImage}
+                  PlaceholderContent={<ActivityIndicator />}
                   resizeMode="contain"
                 />
 

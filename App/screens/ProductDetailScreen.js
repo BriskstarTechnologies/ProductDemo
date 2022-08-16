@@ -12,10 +12,12 @@ import { color } from '../utils/color';
 import { useFocusEffect } from '@react-navigation/native';
 import Slideshow from 'react-native-image-slider-show';
 import ViewMoreText from 'react-native-view-more-text';
+import RenderHtml from 'react-native-render-html';
 
 //Note : In this screen display Product description with rating and more.
 const ProductDetailScreen = ({ route }) => {
   const { data } = route.params;
+  const htmlText ="<p>We will train model with bidirectional LSTM on the </p>"
   
   const productImages = [
     "https://source.unsplash.com/1024x768/?nature",
@@ -138,12 +140,15 @@ const ProductDetailScreen = ({ route }) => {
           5% Off
         </Text>
       </View>
+      {/* <Text style={{ padding: 6 }}>{htmlText}</Text>  */}
+      
       <ViewMoreText
         numberOfLines={3}
         renderViewMore={renderViewMore}
         renderViewLess={renderViewLess}
         textStyle={{ textAlign: 'left', padding: 6 }}>
-        <Text style={{ padding: 6 }}>{data.description}</Text>
+          <Text style={{ padding: 6 }}>{data.description}</Text> 
+      
       </ViewMoreText>
 
       <View

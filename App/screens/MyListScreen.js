@@ -8,6 +8,7 @@ import {
     FlatList,
     Alert,
     BackHandler,
+    ActivityIndicator,
 } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -77,6 +78,7 @@ const MyListScreen = props => {
                                         source={{ uri: item.image }}
                                         style={styles.listImage}
                                         resizeMode="contain"
+                                        PlaceholderContent={<ActivityIndicator />}
                                     />
                                 </View>
                                 <View style={{ width: '65%', backgroundColor: 'white' }}>
