@@ -11,8 +11,6 @@ The Online shop is a virtual store, where customers can browse the items and add
 
 ## Tech
 
-Dillinger uses a number of open source projects to work properly:
-
 - [React native] - Cross platform for the Android & IOS!
 
 ## Thank you
