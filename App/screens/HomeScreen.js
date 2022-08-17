@@ -16,6 +16,7 @@ import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
+import AppConstant from '../utils/AppConstant';
 
 //Note : In this screen display Product list with price and short description.
 const HomeScreen = props => {
@@ -40,7 +41,7 @@ const HomeScreen = props => {
 
   //Note : This Function is used in hardware back click. 
   const backAction = () => {
-    Alert.alert('Alert!', 'Are you sure you want to go exit?', [
+    Alert.alert(AppConstant.APP_NAME, 'Are you sure you want to go exit?', [
       {
         text: 'Cancel',
         style: 'cancel',
@@ -52,7 +53,7 @@ const HomeScreen = props => {
 
   //Note : Add to cart click
   const onClickAddToCart = (index, item) => {
-    Alert.alert("Note", "Item is added in your cart")
+    Alert.alert(AppConstant.APP_NAME, "Item is added in your cart")
   };
 
   return (

@@ -13,6 +13,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import Slideshow from 'react-native-image-slider-show';
 import ViewMoreText from 'react-native-view-more-text';
 import RenderHtml from 'react-native-render-html';
+import AppConstant from '../utils/AppConstant';
 
 //Note : In this screen display Product description with rating and more.
 const ProductDetailScreen = ({ route }) => {
@@ -39,7 +40,7 @@ const ProductDetailScreen = ({ route }) => {
   );
   const onPressBuyNow = () => {
     setBtnLoading(true);
-    Alert.alert('Alert!', 'Are you sure you want to buy this product?', [
+    Alert.alert(AppConstant.APP_NAME, 'Are you sure you want to buy this product?', [
       {
         text: 'Cancel', onPress: () => setBtnLoading(false)
       },
