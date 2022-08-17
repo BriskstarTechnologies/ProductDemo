@@ -11,6 +11,6 @@ The Online shop is a virtual store, where customers can browse the items and add
 
 ## Tech
 
-- [React native] - Cross platform for the Android & IOS!
+- [React native] - Cross platform for the Android & IOS Application!
 
 ## Thank you
