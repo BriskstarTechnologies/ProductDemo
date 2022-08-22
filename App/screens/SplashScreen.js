@@ -15,7 +15,7 @@ import {useDispatch} from 'react-redux';
 import { addProductList } from '../redux/actions/action';
 
 //Note : This is splash screen.
-   //In this screen API Product List calling and store in reducx.    
+ //In this screen API Product List calling and store in reducx.    
 const SplashScreen = ({navigation}) => {
   const {colors} = useTheme();
   const [loading, setLoading] = useState(false);

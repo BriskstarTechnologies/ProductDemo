@@ -16,6 +16,7 @@ import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
+import CommonStatusBar from '../components/CommonStatusBar';
 
 //Note : In this screen display Product list with price and short description.
 const MyListScreen = props => {
@@ -35,7 +36,7 @@ const MyListScreen = props => {
     );
 
     useEffect(() => {
-        setResult(data.productData.productList)
+        setResult(data.productReducer.productData)
         setLoading(false)
        }, []);
     
@@ -54,6 +55,7 @@ const MyListScreen = props => {
     return (
         <View style={styles.container}>
              <Loader loading={loading} />
+             <CommonStatusBar/>
             <Header
                 centerComponent={{
                     text: 'My List',

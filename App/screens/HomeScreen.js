@@ -14,17 +14,23 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 import { Image, Header } from 'react-native-elements';
 import { color } from '../utils/color';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import Loader from '../components/Loader';
 import AppConstant from '../utils/AppConstant';
+import {addToCart} from '../redux/actions/action';
+import CommonStatusBar from '../components/CommonStatusBar';
 
 //Note : In this screen display Product list with price and short description.
 const HomeScreen = props => {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cartData,setCartData] = useState([]);
 
   //Note :This method are used to get product data from redux.
   const data = useSelector((state) => state);
+
+  //Note : This method is used to set add to cart data to redux.
+  const dispatch = useDispatch();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -35,7 +41,7 @@ const HomeScreen = props => {
   );
 
   useEffect(() => {
-    setResult(data.productData.productList)
+    setResult(data.productReducer.productData)
     setLoading(false)
    }, []);
 
@@ -53,12 +59,25 @@ const HomeScreen = props => {
 
   //Note : Add to cart click
   const onClickAddToCart = (index, item) => {
-    Alert.alert(AppConstant.APP_NAME, "Item is added in your cart")
+    console.log("Cart Item",data.cartReducer.cartData)
+ 
+    let addedItemToCart = data.cartReducer.cartData.find(
+      item => item.id === result[index].id,
+    );
+   
+    if (addedItemToCart == null) {
+      dispatch(addToCart(item));
+      Alert.alert(AppConstant.APP_NAME,"Item is added in your cart")
+    }
+    else{
+      Alert.alert(AppConstant.APP_NAME,"This item allready added in your cart");
+    }
   };
 
   return (
     <View style={styles.container}>
        <Loader loading={loading} />
+       <CommonStatusBar backgroundColor={color.colorWhite}/>
       <Header
         centerComponent={{
           text: 'Products',
@@ -92,7 +111,7 @@ const HomeScreen = props => {
                   style={{ marginStart: 'auto', backgroundColor: 'orange', borderRadius: 20, padding: 6 }}
                   onPress={() => onClickAddToCart(index, item)}>
                   <Image
-                    source={require('../assets/ic_cart.png')}
+                    source={require('../assets/ic_cart1.png')}
                     style={{
                       height: 22,
                       width: 22,

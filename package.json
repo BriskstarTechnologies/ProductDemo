@@ -34,7 +34,7 @@
     "react-native-screens": "^3.5.0",
     "react-native-toast-notification": "^1.1.2",
     "react-native-touchable-scale": "^2.1.2",
-    "react-native-vector-icons": "^8.1.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-native-view-more-text": "^2.1.0",
     "react-redux": "^8.0.2",
     "react-style-proptype": "^3.2.2",
